@@ -1,7 +1,7 @@
 image:
-  repository: tccr.io/truecharts/jellyfin
+  repository: nyanmisaka/jellyfin
   pullPolicy: IfNotPresent
-  tag: v10.7.7@sha256:0136db4677a2ee2ee8a6962d813d6e3b49aa86784a7cfdc3af76427db32c3470
+  tag: latest@sha256:73250ce48ca3acc12e2532298774ef6981c394a46db98a9a90b9f5d225e8b716
 
 securityContext:
   readOnlyRootFilesystem: false
@@ -15,7 +15,18 @@ service:
       main:
         port: 8096
         targetPort: 8096
-
+  dlna:
+    ports:
+      main:
+        port: 1900
+        targetPort: 1900
+        
+  auto-discover:
+    ports:
+      main:
+        port: 7359
+        targetPort: 7359
+        
 persistence:
   config:
     enabled: true
