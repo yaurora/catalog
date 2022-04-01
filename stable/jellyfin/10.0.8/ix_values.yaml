@@ -21,12 +21,6 @@ service:
         port: 1900
         targetPort: 1900
         
-  autodiscover:
-    ports:
-      autodiscover:
-        port: 7359
-        targetPort: 7359
-        
 persistence:
   config:
     enabled: true
