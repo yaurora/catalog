@@ -424,8 +424,8 @@ questions:
                                     type: int
                                     default: 8096
         - variable: dlna
-          label: "Main Service"
-          description: "The Primary service on which the healthcheck runs, often the webUI"
+          label: "DLNA Service"
+          description: "The DLNA service on which the DLNA runs"
           schema:
             additional_attrs: true
             type: dict
@@ -502,8 +502,8 @@ questions:
                   additional_attrs: true
                   type: dict
                   attrs:
-                    - variable: main
-                      label: "Main Service Port Configuration"
+                    - variable: dlna
+                      label: "DLNA Service Port Configuration"
                       schema:
                         additional_attrs: true
                         type: dict
@@ -551,8 +551,8 @@ questions:
                                     default: 1900
 
         - variable: auto-discover
-          label: "Main Service"
-          description: "The Primary service on which the healthcheck runs, often the webUI"
+          label: "auto discover Service"
+          description: "The auto discover service on which the auto discover runs"
           schema:
             additional_attrs: true
             type: dict
@@ -629,8 +629,8 @@ questions:
                   additional_attrs: true
                   type: dict
                   attrs:
-                    - variable: main
-                      label: "Main Service Port Configuration"
+                    - variable: auto-discover
+                      label: "auto-discover Service Port Configuration"
                       schema:
                         additional_attrs: true
                         type: dict
