@@ -17,13 +17,13 @@ service:
         targetPort: 8096
   dlna:
     ports:
-      main:
+      dlna:
         port: 1900
         targetPort: 1900
         
   auto-discover:
     ports:
-      main:
+      auto-discover:
         port: 7359
         targetPort: 7359
         
