@@ -415,7 +415,7 @@ questions:
                                   description: "This port gets exposed to the node. Only considered when service type is NodePort, Simple or LoadBalancer"
                                   schema:
                                     type: int
-                                    min: 5000
+                                    min: 9000
                                     max: 65535
                                 - variable: targetPort
                                   label: "Target Port"
@@ -541,7 +541,7 @@ questions:
                                   description: "This port gets exposed to the node. Only considered when service type is NodePort, Simple or LoadBalancer"
                                   schema:
                                     type: int
-                                    min: 1000
+                                    min: 9000
                                     max: 65535
                                 - variable: targetPort
                                   label: "Target Port"
@@ -549,8 +549,7 @@ questions:
                                   schema:
                                     type: int
                                     default: 1900
-
-        - variable: auto-discover
+        - variable: autodiscover
           label: "auto discover Service"
           description: "The auto discover service on which the auto discover runs"
           schema:
@@ -629,8 +628,8 @@ questions:
                   additional_attrs: true
                   type: dict
                   attrs:
-                    - variable: auto-discover
-                      label: "auto-discover Service Port Configuration"
+                    - variable: autodiscover
+                      label: "Autodiscover Service Port Configuration"
                       schema:
                         additional_attrs: true
                         type: dict
@@ -668,7 +667,7 @@ questions:
                                   description: "This port gets exposed to the node. Only considered when service type is NodePort, Simple or LoadBalancer"
                                   schema:
                                     type: int
-                                    min: 1000
+                                    min: 9000
                                     max: 65535
                                 - variable: targetPort
                                   label: "Target Port"

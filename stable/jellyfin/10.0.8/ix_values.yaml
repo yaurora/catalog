@@ -21,9 +21,9 @@ service:
         port: 1900
         targetPort: 1900
         
-  auto-discover:
+  autodiscover:
     ports:
-      auto-discover:
+      autodiscover:
         port: 7359
         targetPort: 7359
         
