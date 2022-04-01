@@ -1,6 +1,6 @@
 # Changelog<br>
 
-
+# tried to add DLNA support
 <a name="jellyfin-10.0.8"></a>
 ### [jellyfin-10.0.8](https://github.com/truecharts/apps/compare/jellyfin-10.0.7...jellyfin-10.0.8) (2022-03-31)
 
