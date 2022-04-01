@@ -15,11 +15,6 @@ service:
       main:
         port: 8096
         targetPort: 8096
-  dlna:
-    ports:
-      dlna:
-        port: 1900
-        targetPort: 1900
         
 persistence:
   config:
