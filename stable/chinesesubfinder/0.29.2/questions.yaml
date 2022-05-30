@@ -168,13 +168,6 @@ questions:
                             label: "Value"
                             schema:
                               type: string
-  - variable: env
-    group: "Container Configuration"
-    label: "Image Environment"
-    schema:
-      additional_attrs: true
-      type: dict
-      attrs:
   - variable: TZ
     label: "Timezone"
     group: "Container Configuration"
