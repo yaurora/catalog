@@ -1,7 +1,7 @@
 image:
   repository: allanpk716/chinesesubfinder
   pullPolicy: IfNotPresent
-  tag: allanpk716/chinesesubfinder:latest@sha256:540e02f80ef67d80fa1893264e62b66608c9879d01f8a3bc1e3b4f0917abde57
+  tag: latest@sha256:540e02f80ef67d80fa1893264e62b66608c9879d01f8a3bc1e3b4f0917abde57
 
 securityContext:
   readOnlyRootFilesystem: false
