@@ -175,12 +175,6 @@ questions:
       additional_attrs: true
       type: dict
       attrs:
-        - variable: JELLYFIN_PublishedServerUrl
-          description: "Published Server URL"
-          label: "The Server URL to publish in UDP Auto Discovery response."
-          schema:
-            type: string
-            default: ""
   - variable: TZ
     label: "Timezone"
     group: "Container Configuration"
