@@ -19,7 +19,7 @@ maintainers:
 - email: info@truecharts.org
   name: TrueCharts
   url: https://truecharts.org
-name: ChineseSubFinder
+name: chinesesubfinder
 sources:
 - https://github.com/allanpk716/ChineseSubFinder
 type: application
