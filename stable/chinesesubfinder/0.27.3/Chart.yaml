@@ -1,0 +1,33 @@
+apiVersion: v2
+appVersion: "0.27.3"
+dependencies:
+- name: common
+  repository: https://library-charts.truecharts.org
+  version: 9.1.15
+deprecated: false
+description: ChineseSubFinder is a subtitle finder utility for Chinese
+home: https://github.com/allanpk716/ChineseSubFinder
+icon: https://raw.githubusercontent.com/allanpk716/ChineseSubFinder/e3f62bbef44bdceead2a27a7a28a07f641d9e2e4/frontend/public/icons/favicon.ico
+keywords:
+- ChineseSubFinder
+- subtitle
+- jellyfin
+- plex
+- emby
+kubeVersion: '>=1.16.0-0'
+maintainers:
+- email: info@truecharts.org
+  name: TrueCharts
+  url: https://truecharts.org
+name: chinesesubfinder
+sources:
+- https://github.com/allanpk716/ChineseSubFinder
+type: application
+version: 0.27.3
+annotations:
+  truecharts.org/catagories: |
+    - media
+    - utility
+    - tools
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
