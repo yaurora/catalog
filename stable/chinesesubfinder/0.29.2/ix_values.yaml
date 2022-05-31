@@ -1,7 +1,7 @@
 image:
   repository: allanpk716/chinesesubfinder
   pullPolicy: IfNotPresent
-  tag: v0.29.3@sha256:bd9a35edac6000dce60f4e9c4d617e8a4b58acb1533d9a7d6afac305776362bd
+  tag: v0.27.3@sha256:198d00b3219134da47d040c3da68240a93a0c2fe3177c80c47631171356948e6
 
 securityContext:
   readOnlyRootFilesystem: false
@@ -13,6 +13,11 @@ service:
       main:
         port: 19035
         targetPort: 19035
+  static_port:
+    ports:
+      static_port:
+        port: 19037
+        targetPort: 19037
 
 persistence:
   config:
