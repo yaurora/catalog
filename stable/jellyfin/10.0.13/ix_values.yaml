@@ -1,0 +1,26 @@
+image:
+  repository: yaurora/jellyfin
+  pullPolicy: IfNotPresent
+  tag: latest@sha256:ed728b5f41d44afe7faa84b1f0f8cf09cce316137482327b3b4024811270be7d
+
+securityContext:
+  readOnlyRootFilesystem: false
+
+env:
+  JELLYFIN_PublishedServerUrl: "https://jelly.mydomain.com"
+
+service:
+  main:
+    ports:
+      main:
+        port: 18096
+        targetPort: 8096
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+  cache:
+    enabled: true
+    mountPath: "/cache"
+    type: "emptyDir"
