@@ -1,0 +1,29 @@
+env:
+  SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/prusaslicer-novnc
+  tag: latest@sha256:f62da5acb47b2b6c3f2d5e980fb8c071f65c9f8544a0d911e3a70e2d8ed8a6d6
+persistence:
+  configsfolder:
+    enabled: true
+    mountPath: /configs/
+  prints:
+    enabled: true
+    mountPath: /prints/
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    ports:
+      main:
+        port: 6080
+        protocol: TCP
+        targetPort: 8080
+
+portal:
+  enabled: true

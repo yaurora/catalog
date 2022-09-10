@@ -1,0 +1,28 @@
+env: {}
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/cadquery-server
+  tag: latest@sha256:7fee8c8de56ab6d004276375b5de2297bbdfcc2d83065ae939db3c4c3f0daaef
+persistence: {}
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    enabled: false
+    ports:
+      main:
+        enabled: false
+
+portal:
+  enabled: false

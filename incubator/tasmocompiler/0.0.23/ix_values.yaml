@@ -1,0 +1,28 @@
+env: {}
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/tasmocompiler
+  tag: latest@sha256:48fcda47ac8bbec716ed486ebe4cfe17f9e4c5515e4bff99e619aeca16f3a85d
+persistence: {}
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    enabled: false
+    ports:
+      main:
+        enabled: false
+
+portal:
+  enabled: false

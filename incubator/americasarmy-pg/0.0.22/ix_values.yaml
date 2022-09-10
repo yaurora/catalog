@@ -1,0 +1,57 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/americasarmy-pg
+  tag: latest@sha256:c8b0a973e2303406ae3daeb2ff63f9ef65d7f5ef7af92da4e1bc6bed4ecac920
+
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+secretEnv:
+  USERNAME: ""
+  PASSWRD: ""
+
+env:
+  GAME_ID: "203300"
+  GAME_PARAMS: -port=7778 -SAP=8778 -SQP=27015 -aauregion=1 -log=Server.log
+  SRV_NAME: Army Docker
+  VALIDATE: false
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+service:
+  main:
+    ports:
+      main:
+        port: 8778
+        protocol: UDP
+        targetPort: 8778
+  steamqueryport:
+    enabled: true
+    ports:
+      steamqueryport:
+        enabled: true
+        port: 27015
+        protocol: UDP
+        targetPort: 27015
+
+persistence:
+  serverfiles:
+    enabled: true
+    mountPath: /serverdata/serverfiles
+  steamcmd:
+    enabled: true
+    mountPath: /serverdata/steamcmd
+
+portal:
+  enabled: true

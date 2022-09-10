@@ -1,0 +1,15 @@
+dependencies:
+- name: common
+  repository: https://library-charts.truecharts.org
+  version: 10.5.4
+- name: postgresql
+  repository: https://charts.truecharts.org/
+  version: 8.0.67
+- name: collabora-online
+  repository: https://charts.truecharts.org/
+  version: 12.1.35
+- name: redis
+  repository: https://charts.truecharts.org
+  version: 3.0.65
+digest: sha256:e533201cd3dad2d4c733b1c21b70ed246d6f148b9c1e5f6ceff28b796e845e22
+generated: "2022-08-30T08:13:08.631602659Z"

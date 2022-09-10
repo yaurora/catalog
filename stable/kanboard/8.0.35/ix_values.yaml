@@ -1,0 +1,52 @@
+image:
+  repository: tccr.io/truecharts/kanboard
+  tag: 1.2.23@sha256:85ff5883befd421f3ad5bddfa547eddbe9b844212665fb0012eef79f8fbc7ddf
+  pullPolicy: IfNotPresent
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+env:
+  MAIL_CONFIGURATION: false
+  LOG_DRIVER: stdout
+  DB_DRIVER: "postgres"
+  DB_NAME: "{{ .Values.postgresql.postgresqlDatabase }}"
+  DB_USERNAME: "{{ .Values.postgresql.postgresqlUsername }}"
+  DB_PORT: "5432"
+  DB_PASSWORD:
+    secretKeyRef:
+      name: dbcreds
+      key: postgresql-password
+  DB_HOSTNAME:
+    secretKeyRef:
+      name: dbcreds
+      key: plainhost
+
+service:
+  main:
+    ports:
+      main:
+        port: 10015
+        targetPort: 80
+
+persistence:
+  data:
+    enabled: true
+    mountPath: "/var/www/app/data"
+  ssl:
+    enabled: true
+    mountPath: "/etc/nginx/ssl"
+
+postgresql:
+  enabled: true
+  existingSecret: "dbcreds"
+  postgresqlUsername: kanboard
+  postgresqlDatabase: kanboard
+
+portal:
+  enabled: true

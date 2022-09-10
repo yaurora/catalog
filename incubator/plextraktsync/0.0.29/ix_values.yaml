@@ -1,0 +1,28 @@
+env: {}
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/plextraktsync
+  tag: latest@sha256:5144c43c73ef2de888278780deee1e951f1724b123cabe9136549ef274a469c1
+persistence: {}
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    enabled: false
+    ports:
+      main:
+        enabled: false
+
+portal:
+  enabled: false

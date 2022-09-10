@@ -1,0 +1,33 @@
+image:
+  repository: tccr.io/truecharts/jackett
+  pullPolicy: IfNotPresent
+  tag: 0.20.1799@sha256:13790c5ec67eefd087f00b3b97f25c800043f69235818696a34b9b3f0c89a720
+
+securityContext:
+  readOnlyRootFilesystem: false
+
+service:
+  main:
+    ports:
+      main:
+        protocol: HTTP
+        targetPort: 9117
+        port: 9117
+
+probes:
+  liveness:
+    path: "/UI/Login"
+
+  readiness:
+    path: "/UI/Login"
+
+  startup:
+    path: "/UI/Login"
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+
+portal:
+  enabled: true

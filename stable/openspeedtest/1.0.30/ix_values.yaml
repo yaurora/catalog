@@ -1,0 +1,23 @@
+image:
+  repository: tccr.io/truecharts/openspeedtest
+  pullPolicy: IfNotPresent
+  tag: latest@sha256:641c5bfddb0353fa79050af56dd4478fd9485b73908035a73eba4e35c5563101
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+service:
+  main:
+    ports:
+      main:
+        protocol: HTTP
+        targetPort: 3000
+        port: 10256
+
+portal:
+  enabled: true

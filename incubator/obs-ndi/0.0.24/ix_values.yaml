@@ -1,0 +1,28 @@
+env:
+  NVIDIA_DRIVER_CAPABILITIES: all
+  NVIDIA_VISIBLE_DEVICES: ""
+  VNC_PASSWD: "123456"
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/obs-ndi
+  tag: latest@sha256:a7099c136f2f99b3e6fe4676d37aa595d7478d40bae4f61f9465eaa31fa597d4
+persistence:
+  configpath:
+    enabled: true
+    mountPath: /config/obs-studio
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    ports:
+      main:
+        port: 5901
+        protocol: TCP
+        targetPort: 5901
+
+portal:
+  enabled: true

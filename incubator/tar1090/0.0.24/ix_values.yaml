@@ -1,0 +1,26 @@
+env:
+  BEASTHOST: <BEASTHOST>
+  LAT: xx.xxxxx
+  LONG: xx.xxxxx
+  MLATHOST: <MLATHOST>
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/tar1090
+  tag: latest@sha256:956097b8e37cd2e892097c7c16d2e5237b245cad778ad772ad6b325b2e950e6b
+persistence: {}
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    ports:
+      main:
+        port: 8078
+        protocol: TCP
+        targetPort: 80
+
+portal:
+  enabled: true

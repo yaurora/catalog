@@ -1,0 +1,36 @@
+image:
+  repository: tccr.io/truecharts/duckdns
+  pullPolicy: IfNotPresent
+  tag: latest@sha256:921e13bc41f18e7faf850de8794c2183dfa022f9995e7909f8b205b188ddcb46
+
+securityContext:
+  runAsNonRoot: false
+  readOnlyRootFilesystem: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+secretEnv:
+  TOKEN: ""
+
+env:
+  SUBDOMAINS: ""
+  LOG_FILE: false
+
+service:
+  main:
+    enabled: false
+    ports:
+      main:
+        enabled: false
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+  varrun:
+    enabled: true
+
+portal:
+  enabled: false

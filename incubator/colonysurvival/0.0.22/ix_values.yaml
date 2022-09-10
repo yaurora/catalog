@@ -1,0 +1,51 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/colonysurvival
+  tag: latest@sha256:0f87dc019ad2adbaa49020260f984c866fc78a84c228a4578b620d704c51c11e
+
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+secretEnv:
+  USERNAME: ""
+  PASSWRD: ""
+
+env:
+  GAME_ID: "748090"
+  GAME_PARAMS: +server.gameport 27016
+  SRV_NAME: Colony Survival Docker
+  SRV_NETTYPE: SteamOnline
+  SRV_WORLDNAME: ColonySurvival
+  VALIDATE: false
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+
+service:
+  main:
+    ports:
+      main:
+        port: 27016
+        protocol: UDP
+        targetPort: 27016
+
+persistence:
+  serverfiles:
+    enabled: true
+    mountPath: /serverdata/serverfiles
+  steamcmd:
+    enabled: true
+    mountPath: /serverdata/steamcmd
+
+portal:
+  enabled: true

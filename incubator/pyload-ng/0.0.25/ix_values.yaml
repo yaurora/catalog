@@ -1,0 +1,37 @@
+env:
+  UMASK: ""
+image:
+  pullPolicy: IfNotPresent
+  repository: tccr.io/truecharts/pyload-ng
+  tag: latest@sha256:715a60d53dd90a5773359659d79bcb81d492b8a9437bf56840cf9da1312102e1
+persistence:
+  config:
+    enabled: true
+    mountPath: /config
+  pathdownloads:
+    enabled: true
+    mountPath: /downloads
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+service:
+  main:
+    ports:
+      main:
+        port: 8000
+        protocol: HTTP
+        targetPort: 8000
+  port9666:
+    enabled: true
+    ports:
+      port9666:
+        enabled: true
+        port: 9666
+        protocol: TCP
+        targetPort: 9666
+
+portal:
+  enabled: true

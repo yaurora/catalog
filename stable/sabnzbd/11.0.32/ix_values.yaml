@@ -1,0 +1,22 @@
+image:
+  repository: tccr.io/truecharts/sabnzbd
+  pullPolicy: IfNotPresent
+  tag: 3.6.1@sha256:2c07304fb7f83dce4bc4ef4d06d6563256c3f41f365c2e8aeb295483fe1579c6
+
+env:
+  HOST_WHITELIST_ENTRIES: ""
+
+service:
+  main:
+    ports:
+      main:
+        port: 10097
+        targetPort: 8080
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+
+portal:
+  enabled: true

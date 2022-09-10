@@ -1,0 +1,28 @@
+image:
+  repository: tccr.io/truecharts/trilium-notes
+  pullPolicy: IfNotPresent
+  tag: 0.54.3@sha256:deb989e8cc739249af5824d17993598d22ef63fa63028b46176692fe4ce1751e
+
+securityContext:
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+  fsGroup: 1000
+
+service:
+  main:
+    ports:
+      main:
+        protocol: HTTP
+        targetPort: 8080
+        port: 10156
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/home/node"
+
+portal:
+  enabled: true

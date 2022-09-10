@@ -1,0 +1,26 @@
+image:
+  repository: tccr.io/truecharts/homer
+  tag: 22.08.1@sha256:d69935a9be19700bc84b07a16fd48e31ebf54432e9574a919f80ef72732038b9
+  pullPolicy: IfNotPresent
+
+podSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+
+env:
+  INIT_ASSETS: true
+
+service:
+  main:
+    ports:
+      main:
+        port: 10178
+        targetPort: 8080
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/www/assets"
+
+portal:
+  enabled: true

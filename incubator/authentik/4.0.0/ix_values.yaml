@@ -1,0 +1,224 @@
+image:
+  repository: tccr.io/truecharts/authentik
+  tag: 2022.8.2@sha256:ff1f86ee6a26866e2806321fa98f45d4bce01d89e622f505085edc8831518f89
+  pullPolicy: IfNotPresent
+
+geoipImage:
+  repository: tccr.io/truecharts/geoipupdate
+  tag: v4.9@sha256:ce42b4252c8cd4a9e39275fd7c3312e5df7bda0d7034df565af4362d7e0d26ce
+  pullPolicy: IfNotPresent
+
+extraArgs: ["server"]
+
+podSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+
+workerContainer:
+  enabled: true
+
+authentik:
+  credentials:
+    password: "supersecret"
+    token: "supersecretapitoken"
+  outposts:
+    container_image_base: tccr.io/truecharts/authentik-%(type)s:%(version)s
+    discover: true
+  general:
+    disable_update_check: false
+    disable_startup_analytics: true
+    allow_user_name_change: true
+    allow_user_mail_change: true
+    allow_user_username_change: true
+    gdpr_compliance: true
+    impersonation: true
+    avatars: "gravatar"
+    token_length: 128
+    # Use single quotes for footer_links
+    footer_links: '[{"name": "Link Name", "href": "https://mylink.com"}]'
+  mail:
+    host: ""
+    port: 25
+    tls: false
+    ssl: false
+    timeout: 10
+    user: ""
+    pass: ""
+    from: ""
+  error_reporting:
+    enabled: false
+    send_pii: false
+    environment: "customer"
+  logging:
+    log_level: "info"
+  ldap:
+    tls_ciphers: "null"
+  metrics:
+    enabled: true
+    # LDAP Outpost listens on 9300. To avoid conflicts
+    # This sets internal Authentik metrics port to 9301
+    internalPort: 9301
+
+geoip:
+  enabled: false
+  account_id: ""
+  license_key: ""
+  proxy: ""
+  proxy_user_pass: ""
+  edition_ids: "GeoLite2-City"
+  frequency: 8
+  host_server: "updates.maxmind.com"
+  preserve_file_times: false
+  verbose: false
+
+serviceAccount:
+  main:
+    enabled: true
+
+rbac:
+  main:
+    enabled: true
+    rules:
+      - apiGroups:
+          - ""
+        resources:
+          - secrets
+          - services
+          - configmaps
+        verbs:
+          - get
+          - create
+          - delete
+          - list
+          - patch
+      - apiGroups:
+          - extensions
+          - apps
+        resources:
+          - deployments
+        verbs:
+          - get
+          - create
+          - delete
+          - list
+          - patch
+      - apiGroups:
+          - extensions
+          - networking.k8s.io
+        resources:
+          - ingresses
+        verbs:
+          - get
+          - create
+          - delete
+          - list
+          - patch
+      - apiGroups:
+          - traefik.containo.us
+        resources:
+          - middlewares
+        verbs:
+          - get
+          - create
+          - delete
+          - list
+          - patch
+      - apiGroups:
+          - monitoring.coreos.com
+        resources:
+          - servicemonitors
+        verbs:
+          - get
+          - create
+          - delete
+          - list
+          - patch
+      - apiGroups:
+          - apiextensions.k8s.io
+        resources:
+          - customresourcedefinitions
+        verbs:
+          - list
+
+envFrom:
+  - secretRef:
+      name: '{{ include "tc.common.names.fullname" . }}-authentik-secret'
+  - configMapRef:
+      name: '{{ include "tc.common.names.fullname" . }}-authentik-config'
+
+probes:
+  liveness:
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command:
+          - /lifecycle/ak
+          - healthcheck
+  readiness:
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command:
+          - /lifecycle/ak
+          - healthcheck
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      exec:
+        command:
+          - /lifecycle/ak
+          - healthcheck
+
+service:
+  main:
+    ports:
+      main:
+        protocol: HTTPS
+        port: 10229
+        targetPort: 9443
+  http:
+    enabled: true
+    ports:
+      http:
+        enabled: true
+        protocol: HTTP
+        port: 10230
+        targetPort: 9000
+  metrics:
+    enabled: true
+    ports:
+      metrics:
+        enabled: true
+        protocol: HTTP
+        port: 10231
+        targetPort: 9301
+
+persistence:
+  media:
+    enabled: true
+    mountPath: "/media"
+  templates:
+    enabled: true
+    mountPath: "/templates"
+  certs:
+    enabled: true
+    mountPath: "/certs"
+  geoip:
+    enabled: true
+    mountPath: "/geoip"
+
+postgresql:
+  enabled: true
+  existingSecret: "dbcreds"
+  postgresqlUsername: authentik
+  postgresqlDatabase: authentik
+
+redis:
+  enabled: true
+  existingSecret: "rediscreds"
+
+portal:
+  enabled: true

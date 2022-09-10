@@ -1,0 +1,33 @@
+image:
+  repository: nyanmisaka/jellyfin
+  pullPolicy: IfNotPresent
+<<<<<<< HEAD:stable/jellyfin/10.0.8/ix_values.yaml
+  tag: latest@sha256:73250ce48ca3acc12e2532298774ef6981c394a46db98a9a90b9f5d225e8b716
+=======
+  tag: 10.8.4@sha256:e13124f441178fc8068ea038bf8c470c05840cd503bbd2b611ad99a885437897
+>>>>>>> upstream/main:stable/jellyfin/11.0.30/ix_values.yaml
+
+securityContext:
+  readOnlyRootFilesystem: false
+
+env:
+  JELLYFIN_PublishedServerUrl: "https://jelly.mydomain.com"
+
+service:
+  main:
+    ports:
+      main:
+        port: 8096
+        targetPort: 8096
+        
+persistence:
+  config:
+    enabled: true
+    mountPath: "/config"
+  cache:
+    enabled: true
+    mountPath: "/cache"
+    type: "emptyDir"
+
+portal:
+  enabled: true

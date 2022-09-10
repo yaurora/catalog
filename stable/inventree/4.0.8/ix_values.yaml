@@ -1,0 +1,80 @@
+image:
+  repository: tccr.io/truecharts/inventree
+  tag: 0.8.2@sha256:6e25164df98d08f0539941599a35fb3c6d043181a7b8847f47c1eba981877d74
+  pullPolicy: IfNotPresent
+
+nginxImage:
+  repository: tccr.io/truecharts/nginx
+  tag: v1.23.1@sha256:1620254cd011e2b81361f1f4682fd6cceadf13b07f8e37f322b60407d6d5a766
+  pullPolicy: IfNotPresent
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+# https://github.com/inventree/InvenTree/pull/3096
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+envFrom:
+  - secretRef:
+      name: '{{ include "tc.common.names.fullname" . }}-inventree-secret'
+  - configMapRef:
+      name: '{{ include "tc.common.names.fullname" . }}-inventree-config'
+
+inventree:
+  credentials:
+    admin_mail: "test@example.com"
+    admin_user: "testuser"
+    admin_password: "secret"
+  general:
+    debug: false
+    log_level: "INFO"
+    plugins_enabled: false
+    login_confirm_days: 3
+    login_attempts: 5
+  mail:
+    backend: "django.core.mail.backends.smtp.EmailBackend"
+    host: ""
+    port: 587
+    username: ""
+    password: ""
+    tls: false
+    ssl: false
+    sender: ""
+
+service:
+  main:
+    ports:
+      main:
+        port: 10231
+
+persistence:
+  data:
+    enabled: true
+    mountPath: "/home/inventree/data"
+  inventree-nginx:
+    enabled: true
+    noMount: true
+    type: custom
+    mountPath: "/etc/nginx/conf.d"
+    volumeSpec:
+      configMap:
+        name: '{{ include "tc.common.names.fullname" . }}-inventree-config-nginx'
+        items:
+          - key: nginx.conf
+            path: default.conf
+
+postgresql:
+  enabled: true
+  existingSecret: "dbcreds"
+  postgresqlUsername: inventree
+  postgresqlDatabase: inventree
+
+redis:
+  enabled: true
+  existingSecret: "rediscreds"
+  redisUsername: default
+
+portal:
+  enabled: true
