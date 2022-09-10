@@ -1,7 +1,7 @@
 image:
   repository: yaurora/jellyfin
   pullPolicy: IfNotPresent
-  tag: latest@sha256:a0cde10152c1a5fd0b896b41734924cde0c772e89744769a1de9486a4f7be245
+  tag: latest@sha256:0f5741984494069e3f90560f9c90371b43c32bca07ebd4409d56a98acf650979
 
 securityContext:
   readOnlyRootFilesystem: false
