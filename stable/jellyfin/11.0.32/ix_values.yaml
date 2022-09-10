@@ -1,11 +1,7 @@
 image:
-  repository: nyanmisaka/jellyfin
+  repository: yaurora/jellyfin
   pullPolicy: IfNotPresent
-<<<<<<< HEAD:stable/jellyfin/10.0.12/ix_values.yaml
-  tag: latest@sha256:b2e629f66f20b62d5edd3c722a6d8e9af2a5d41751c5df588ab60d65d36db33b
-=======
-  tag: 10.8.4@sha256:e13124f441178fc8068ea038bf8c470c05840cd503bbd2b611ad99a885437897
->>>>>>> upstream/main:stable/jellyfin/11.0.32/ix_values.yaml
+  tag: latest@sha256:a0cde10152c1a5fd0b896b41734924cde0c772e89744769a1de9486a4f7be245
 
 securityContext:
   readOnlyRootFilesystem: false
